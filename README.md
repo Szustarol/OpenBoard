@@ -1,6 +1,10 @@
 # OpenBoard
 A free and open source solution for digital chess board scanning.
 
+### How does OpenBoard work?
+OpenBoard at it's core is a three-stage machine learning model. The first model detects the chessboard's position on the photo (or screenshot), by creating a segmentation mask. The second stage consists of fitting a quadrilateral to the segmentation, after some preprocessing (keeping only the largest component etc.), and finding a perspective transform that maps the board to a 512x512 square. 
+After the mapping is performed, the third stage, and the second model kicks in, which classifies each 64x64 tile of the aforementioned square, outputting either a figure ID or an empty square's ID. All of the classified tiles are then collected and a FEN notation is generated for the supplied photo.
+
 # The models
 The pretrained models trained on the ![OpenBoard Dataset](https://github.com/Szustarol/OpenBoard-Dataset), are part of the software and are updated and delivered along with the source.   
 
